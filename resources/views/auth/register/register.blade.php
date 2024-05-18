@@ -19,46 +19,52 @@
         <div class="register_form">
           <div class="d-flex mt-3" style="justify-content:space-between">
             <div class="" style="width:140px">
-            @if($errors->any())
-    <div class="alert alert-danger">
-      <ul>
-        @foreach($errors->all() as $error)
-        <li>{{ $error }}</li>
-        @endforeach
-      </ul>
-    </div>
-@endif
               <label class="d-block m-0" style="font-size:13px">姓</label>
               <div class="border-bottom border-primary" style="width:140px;">
-                <input type="text" style="width:140px;" class="border-0 over_name" name="over_name">
+                <input type="text" style="width:140px;" class="border-0 over_name" name="over_name" value="{{old('over_name')}}">
               </div>
+              @if($errors->has('over_name'))
+                <div class="error">{{ $errors->first('over_name') }}</div>
+              @endif
             </div>
             <div class="" style="width:140px">
               <label class=" d-block m-0" style="font-size:13px">名</label>
               <div class="border-bottom border-primary" style="width:140px;">
-                <input type="text" style="width:140px;" class="border-0 under_name" name="under_name">
+                <input type="text" style="width:140px;" class="border-0 under_name" name="under_name" value="{{old('under_name')}}">
               </div>
+              @if($errors->has('under_name'))
+                <div class="error">{{ $errors->first('under_name') }}</div>
+              @endif
             </div>
           </div>
           <div class="d-flex mt-3" style="justify-content:space-between">
             <div class="" style="width:140px">
               <label class="d-block m-0" style="font-size:13px">セイ</label>
               <div class="border-bottom border-primary" style="width:140px;">
-                <input type="text" style="width:140px;" class="border-0 over_name_kana" name="over_name_kana">
+                <input type="text" style="width:140px;" class="border-0 over_name_kana" name="over_name_kana" value="{{old('over_name_kana')}}">
               </div>
+              @if($errors->has('over_name_kana'))
+                <div class="error">{{ $errors->first('over_name_kana') }}</div>
+              @endif
             </div>
             <div class="" style="width:140px">
               <label class="d-block m-0" style="font-size:13px">メイ</label>
               <div class="border-bottom border-primary" style="width:140px;">
-                <input type="text" style="width:140px;" class="border-0 under_name_kana" name="under_name_kana">
+                <input type="text" style="width:140px;" class="border-0 under_name_kana" name="under_name_kana" value="{{old('under_name_kana')}}">
               </div>
+              @if($errors->has('under_name_kana'))
+                <div class="error">{{ $errors->first('under_name_kana') }}</div>
+              @endif
             </div>
           </div>
           <div class="mt-3">
             <label class="m-0 d-block" style="font-size:13px">メールアドレス</label>
             <div class="border-bottom border-primary">
-              <input type="mail" class="w-100 border-0 mail_address" name="mail_address">
+              <input type="mail" class="w-100 border-0 mail_address" name="mail_address" value="{{old('mail_address')}}">
             </div>
+            @if($errors->has('mail_address'))
+                <div class="error">{{ $errors->first('mail_address') }}</div>
+            @endif
           </div>
         </div>
         <div class="mt-3">
@@ -69,9 +75,12 @@
           <input type="radio" name="sex" class="sex" value="3">
           <label style="font-size:13px">その他</label>
         </div>
+            @if($errors->has('sex'))
+                <div class="error">{{ $errors->first('sex') }}</div>
+            @endif
         <div class="mt-3">
           <label class="d-block m-0 aa" style="font-size:13px">生年月日</label>
-          <select class="old_year" name="old_year">
+          <select class="old_year" name="old_year" value="{{old('old_year')}}">
             <option value="none">-----</option>
             <option value="1985">1985</option>
             <option value="1986">1986</option>
@@ -101,7 +110,10 @@
             <option value="2010">2010</option>
           </select>
           <label style="font-size:13px">年</label>
-          <select class="old_month" name="old_month">
+          @if($errors->has('old_year'))
+                <div class="error">{{ $errors->first('old_year') }}</div>
+            @endif
+          <select class="old_month" name="old_month" value="{{old('old_month')}}">
             <option value="none">-----</option>
             <option value="01">1</option>
             <option value="02">2</option>
@@ -117,7 +129,7 @@
             <option value="12">12</option>
           </select>
           <label style="font-size:13px">月</label>
-          <select class="old_day" name="old_day">
+          <select class="old_day" name="old_day" value="{{old('old_day')}}">
             <option value="none">-----</option>
             <option value="01">1</option>
             <option value="02">2</option>
@@ -151,7 +163,7 @@
             <option value="30">30</option>
             <option value="31">31</option>
           </select>
-          <label style="font-size:13px">月</label>
+          <label style="font-size:13px">日</label>
         </div>
         <div class="mt-3">
           <label class="d-block m-0" style="font-size:13px">役職</label>
@@ -176,14 +188,20 @@
         <div class="mt-3">
           <label class="d-block m-0" style="font-size:13px">パスワード</label>
           <div class="border-bottom border-primary">
-            <input type="password" class="border-0 w-100 password" name="password">
+            <input type="password" class="border-0 w-100 password" name="password" value="{{old('password')}}">
           </div>
+            @if($errors->has('password'))
+                <div class="error">{{ $errors->first('password') }}</div>
+            @endif
         </div>
         <div class="mt-3">
           <label class="d-block m-0" style="font-size:13px">確認用パスワード</label>
           <div class="border-bottom border-primary">
-            <input type="password" class="border-0 w-100 password_confirmation" name="password_confirmation">
+            <input type="password" class="border-0 w-100 password_confirmation" name="password_confirmation" value="{{old('password_confirmation')}}">
           </div>
+            @if($errors->has('password_confirmation'))
+                <div class="error">{{ $errors->first('password_confirmation') }}</div>
+            @endif
         </div>
         <div class="mt-5 text-right">
           @csrf
