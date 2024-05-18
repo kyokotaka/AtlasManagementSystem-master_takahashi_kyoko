@@ -22,7 +22,7 @@ class UsersTableSeeder extends Seeder
                 'sex'=>'2',
                 'birth_day'=>'1999-08-24',
                 'role'=>'3',
-                'password'=>'takakyoko'
+                'password'=>bcrypt('takakyoko'),
             ]
         ]);
     }

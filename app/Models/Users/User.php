@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\Users\Subjects;
 
 use App\Models\Posts\Like;
 use Auth;
@@ -67,7 +68,11 @@ class User extends Authenticatable
     }
 
     public function subjects(){
-        return ;$this->hasOne('App\Models\Users');// リレーションの定義
+        return $this->belongsToMany('App\Models\Users\subjects','subject_users','user_id','subject_id');// リレーションの定義
+    }
+
+    public function subject(){
+        return $this->hasOne('App\Models\Users\subjects');
     }
 
     // いいねしているかどうか

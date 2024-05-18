@@ -7,11 +7,13 @@ use App\Providers\RouteServiceProvider;
 use App\Models\Users\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
+// use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use DB;
 
 use App\Models\Users\Subjects;
+use App\Http\Requests\RegisterUserRequest;
+
 
 class RegisterController extends Controller
 {
@@ -57,22 +59,25 @@ class RegisterController extends Controller
         return view('auth.register.register', compact('subjects'));
     }
 
-    public function registerPost(Request $request)
-    {$validated =Validator::make ($request->all(),[
-        'over_name'=>['required,string,max:10'],
-        'under_name'=>['required,string,max:10'],
-        'over_name_kana'=>['required,string,/\A[ァ-ヶー]+\z/,max:30'],
-        'under_name_kana'=>['required,string,/\A[ァ-ヶー]+\z/,max:30'],
-        'mail_address'=>['required,email,unique:users,max:100'],
-        'sex'=>['required,in:1,2,3'],
-        'old_year'=>['required,date_format:"Y"'],
-        'old_month'=>['required,between1,12'],
-        'old_month'=>['required,between1,31'],
-        'role'=>['required,in:1,2,3,4'],
-        'password'=>['required,min:8,max:30,confirmed'],
-        // 'password_confirmation'=>['required,min:8,max:30,']
-    ]);
-    dd($validated);
+    public function registerPost(RegisterUserRequest $request)
+    {
+        // バリデーションが成功した後の処理
+        $validated = $request->validated();
+        dd($validated);
+    //     'over_name'=>['required,string,max:10'],
+    //     'under_name'=>['required,string,max:10'],
+    //     'over_name_kana'=>['required,string,/\A[ァ-ヶー]+\z/,max:30'],
+    //     'under_name_kana'=>['required,string,/\A[ァ-ヶー]+\z/,max:30'],
+    //     'mail_address'=>['required,email,unique:users,max:100'],
+    //     'sex'=>['required,in:1,2,3'],
+    //     'old_year'=>['required,date_format:"Y"'],
+    //     'old_month'=>['required,between1,12'],
+    //     'old_month'=>['required,between1,31'],
+    //     'role'=>['required,in:1,2,3,4'],
+    //     'password'=>['required,min:8,max:30,confirmed'],
+    //     'password_confirmation'=>['required,min:8,max:30,']
+    // ]);
+    //dd($validated);
         DB::beginTransaction();
         try{
             $old_year = $request->old_year;
