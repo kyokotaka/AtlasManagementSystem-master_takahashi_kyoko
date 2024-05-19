@@ -20,7 +20,7 @@
   <div class="d-flex">
     <div class="sidebar">
       @section('sidebar')
-      <p><i class="fa-solid fa-house"></i><a href="{{ route('top.show') }}">トップ</a></p>
+      <p><i class="fa-solid fa-house"></i><a href="{{ route('top.show') }}">マイページ</a></p>
       <p><i class="fa-solid fa-arrow-right-from-bracket"></i><a href="/logout">ログアウト</a></p>
       <p><i class="fa-solid fa-calendar-plus"></i><a href="{{ route('calendar.general.show',['user_id' => Auth::id()]) }}">スクール予約</a></p>
       <!-- if文で権限が4以外の人は表示される。（もしログインしているユーザーの権限が4ではなかったら...） -->
