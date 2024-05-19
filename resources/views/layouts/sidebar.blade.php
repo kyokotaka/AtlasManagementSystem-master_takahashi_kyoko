@@ -13,19 +13,23 @@
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300&family=Oswald:wght@200&display=swap" rel="stylesheet">
   <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <script src="https://kit.fontawesome.com/ed20e3b85e.js" crossorigin="anonymous"></script>
 </head>
 
 <body class="all_content">
   <div class="d-flex">
     <div class="sidebar">
       @section('sidebar')
-      <p><a href="{{ route('top.show') }}">トップ</a></p>
-      <p><a href="/logout">ログアウト</a></p>
-      <p><a href="{{ route('calendar.general.show',['user_id' => Auth::id()]) }}">スクール予約</a></p>
-      <p><a href="{{ route('calendar.admin.show',['user_id' => Auth::id()]) }}">スクール予約確認</a></p>
-      <p><a href="{{ route('calendar.admin.setting',['user_id' => Auth::id()]) }}">スクール枠登録</a></p>
-      <p><a href="{{ route('post.show') }}">掲示板</a></p>
-      <p><a href="{{ route('user.show') }}">ユーザー検索</a></p>
+      <p><i class="fa-solid fa-house"></i><a href="{{ route('top.show') }}">トップ</a></p>
+      <p><i class="fa-solid fa-arrow-right-from-bracket"></i><a href="/logout">ログアウト</a></p>
+      <p><i class="fa-solid fa-calendar-plus"></i><a href="{{ route('calendar.general.show',['user_id' => Auth::id()]) }}">スクール予約</a></p>
+      <!-- if文で権限が4以外の人は表示される。（もしログインしているユーザーの権限が4ではなかったら...） -->
+      @if (Auth::user()->role  !== 4)
+      <p><i class="fa-regular fa-calendar-check"></i><a href="{{ route('calendar.admin.show',['user_id' => Auth::id()]) }}">スクール予約確認</a></p>
+      <p><i class="fa-solid fa-calendar-days"></i><a href="{{ route('calendar.admin.setting',['user_id' => Auth::id()]) }}">スクール枠登録</a></p>
+      @endif
+      <p><i class="fa-solid fa-comment-dots"></i><a href="{{ route('post.show') }}">掲示板</a></p>
+      <p><i class="fa-solid fa-user-group"></i><a href="{{ route('user.show') }}">ユーザー検索</a></p>
       @show
     </div>
     <div class="main-container">

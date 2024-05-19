@@ -55,7 +55,7 @@ class RegisterUserRequest extends FormRequest
             'unique' =>'すでに登録されている:attributeです。',
             'min' => '最低:min字で入力してください。',
             'confirmed' => 'パスワードが一致しません。',
-            'over_name.string' => '文字で入力してください。',
+            'string' => '文字で入力してください。',
             'old_year.min' => '2000年以降で入力してください。'
         ];
   }
@@ -68,13 +68,13 @@ class RegisterUserRequest extends FormRequest
             'over_name_kana' => 'セイ',
             'under_name_kana' => 'メイ',
             'mail_address' => 'メールアドレス',
-    //         'sex' => '性別',
-    //         'old_year' =>'年',
-    //         'old_month' => '月',
-    //         'old_day' => '日',
-    //         'role' => '役職',
-    //         'password' => 'パスワード',
-    //         'password_confirmation' => '確認用パスワード'
+            'sex' => '性別',
+            'old_year' =>'年',
+            'old_month' => '月',
+            'old_day' => '日',
+            'role' => '役職',
+            'password' => 'パスワード',
+            'password_confirmation' => '確認用パスワード'
         ];
     }
 }
