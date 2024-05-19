@@ -79,10 +79,7 @@
           <label style="font-size:13px">その他</label>
         </div>
         @if($errors->has('birth'))
-        <div class="form-group{{ $errors->has('birth') || $errors->has('birth_year') || $errors->has('birth_month') || $errors->has('birth_day') ? ' has-error' : '' }}">
-        @endif
-        @if($errors->has('old_year'))
-            <div class="error" style="font-size:10">{{ $errors->first('old_year') }}</div>
+            <div class="error" style="font-size:10px">{{ $errors->first('birth') }}</div>
           @endif
         <div class="mt-3">
           <label class="d-block m-0 aa" style="font-size:13px">生年月日</label>

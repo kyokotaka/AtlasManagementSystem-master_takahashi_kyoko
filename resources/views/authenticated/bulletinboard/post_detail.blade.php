@@ -7,10 +7,18 @@
         <div class="detail_inner_head">
           <div>
           </div>
+          @if($errors->has('post_title'))
+          <div class="error" style="font-size:10">{{ $errors->first('post_title') }}</div>
+          @endif
+          @if($errors->has('post_body'))
+          <div class="error" style="font-size:10">{{ $errors->first('post_body') }}</div>
+          @endif
+          @if (Auth::user()->id == $post->user_id)
           <div>
             <span class="edit-modal-open" post_title="{{ $post->post_title }}" post_body="{{ $post->post }}" post_id="{{ $post->id }}">編集</span>
-            <a href="{{ route('post.delete', ['id' => $post->id]) }}">削除</a>
+            <a href="{{ route('post.delete', ['id' => $post->id]) }}"onclick="return confirm('削除してよろしいですか？')">削除</a>
           </div>
+          @endif
         </div>
 
         <div class="contributor d-flex">
@@ -42,6 +50,9 @@
   </div>
   <div class="w-50 p-3">
     <div class="comment_container border m-5">
+      @if($errors->has('comment'))
+        <div class="error" style="font-size:10">{{ $errors->first('comment') }}</div>
+      @endif
       <div class="comment_area p-3">
         <p class="m-0">コメントする</p>
         <textarea class="w-100" name="comment" form="commentRequest"></textarea>

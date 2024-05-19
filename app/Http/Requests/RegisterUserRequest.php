@@ -30,10 +30,10 @@ class RegisterUserRequest extends FormRequest
         'under_name_kana' => 'required|string|regex:/\A[ァ-ヶー]+\z/u|max:30',
         'mail_address' => 'required|email|unique:users|max:100',
         'sex' => 'required|in:1,2,3',
-        'birth' => 'required|date|before:today',
-        'old_year' => 'required_with:old_month,old_day|min:2000',
-        'old_month' => 'required_with:old_year,old_day',
-        'old_day' => 'required_with:old_year,old_month',
+        'birth' => 'required|date|before:today|after:1999-12-31',
+        'old_year' => 'required',
+        'old_month' => 'required',
+        'old_day' => 'required',
         'role' => 'required|in:1,2,3,4',
         'password' => 'required|string|min:8|max:30|confirmed',
         'password_confirmation' => 'required|string|min:8|max:30',
@@ -73,8 +73,8 @@ class RegisterUserRequest extends FormRequest
             'min' => '最低:min字で入力してください。',
             'confirmed' => 'パスワードが一致しません。',
             'string' => '文字で入力してください。',
-            'birth' => '今日以前の日付を入力してください。',
-            'old_year.min' => '年は2000年以降でなければなりません。'
+            'birth.before' => '今日以前の日付を入力してください。',
+            'birth.after' => '2000年1月1日以降でなければなりません。'
         ];
   }
 

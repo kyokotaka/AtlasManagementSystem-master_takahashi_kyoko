@@ -7,12 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends Model
 {
     const UPDATED_AT = null;
-    const CREATED_AT = null;
+    //const CREATED_AT = null;
 
     protected $fillable = [
         'user_id',
         'post_title',
         'post',
+        'created_at'
     ];
 
     public function user(){
@@ -24,7 +25,7 @@ class Post extends Model
     }
 
     public function subCategories(){
-        // リレーションの定義
+        return $this->belongsToMany('App\Models\Categories\SubCategory','post_sub_categories','post_id','sub_category_id');// リレーションの定義
     }
 
     // コメント数
