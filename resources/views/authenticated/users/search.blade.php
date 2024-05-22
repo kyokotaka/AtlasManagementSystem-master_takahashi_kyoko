@@ -45,7 +45,7 @@
       </div>
       <div>
         @if($user->role == 4)
-        <span>選択科目 :</span>
+        <span>選択科目 :{{ $user->subjects->pluck('subject')->join(', ') }}</span>
         @endif
       </div>
     </div>
@@ -91,6 +91,9 @@
           </div>
           <div class="selected_engineer">
             <label>選択科目</label>
+            <p>国語</p><input type="checkbox" name="subject" form="userSearchRequest">
+            <p>数学</p><input type="checkbox" name="subject" form="userSearchRequest">
+            <p>英語</p><input type="checkbox" name="subject" form="userSearchRequest">
           </div>
         </div>
       </div>

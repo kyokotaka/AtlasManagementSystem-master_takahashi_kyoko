@@ -10,6 +10,7 @@
           @if($errors->has('post_title'))
           <div class="error" style="font-size:10">{{ $errors->first('post_title') }}</div>
           @endif
+
           @if($errors->has('post_body'))
           <div class="error" style="font-size:10">{{ $errors->first('post_body') }}</div>
           @endif
