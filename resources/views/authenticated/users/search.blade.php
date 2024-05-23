@@ -91,9 +91,9 @@
           </div>
           <div class="selected_engineer">
             <label>選択科目</label>
-            <p>国語</p><input type="checkbox" name="subject" form="userSearchRequest">
-            <p>数学</p><input type="checkbox" name="subject" form="userSearchRequest">
-            <p>英語</p><input type="checkbox" name="subject" form="userSearchRequest">
+            <p>国語<input type="checkbox" name="subject[]" form="userSearchRequest" value="1"></p>
+            <p>数学<input type="checkbox" name="subject[]" form="userSearchRequest" value="2"></p>
+            <p>英語<input type="checkbox" name="subject[]" form="userSearchRequest" value="3"></p>
           </div>
         </div>
       </div>

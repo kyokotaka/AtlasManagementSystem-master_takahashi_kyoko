@@ -12,6 +12,8 @@ use App\Models\Posts\Like;
 use App\Models\Users\User;
 use App\Http\Requests\BulletinBoard\PostFormRequest;
 use Auth;
+use App\Http\Requests\CommentFormRequest;
+//useしないとターゲットクラスが存在しませんとなる。
 
 class PostsController extends Controller
 {
@@ -75,7 +77,7 @@ class PostsController extends Controller
         return redirect()->route('post.input');
     }
 
-    public function commentCreate(PostFormRequest $request){
+    public function commentCreate(CommentFormRequest $request){
         PostComment::create([
             'post_id' => $request->post_id,
             'user_id' => Auth::id(),

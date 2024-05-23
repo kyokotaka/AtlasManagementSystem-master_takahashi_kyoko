@@ -27,7 +27,7 @@ class PostFormRequest extends FormRequest
 
             'post_title' => 'required|string|max:100',
             'post_body' => 'required|string|max:5000',
-            'comment' => 'required|string|max:2500',
+            // 'comment' => 'required|string|max:2500',
         ];
     }
 
@@ -37,8 +37,8 @@ class PostFormRequest extends FormRequest
             'post_title.max' => 'タイトルは100文字以内で入力してください。',
             'post_body.required' =>'投稿内容は必ず入力してください。',
             'post_body.max' => '最大文字数は5000文字です。',
-            'comment.required' => 'コメントは必ず入力してください。',
-            'comment.max' => '最大文字数は2500字です。'
+            // 'comment.required' => 'コメントは必ず入力してください。',
+            // 'comment.max' => '最大文字数は2500字です。'
         ];
     }
 }
