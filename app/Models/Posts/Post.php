@@ -23,10 +23,12 @@ class Post extends Model
     public function likes()
     {
         return $this->hasMany('App\Models\Posts\Like');
+        //1つのポストに対してたくさんいいねできる
     }
 
     public function postComments(){
         return $this->hasMany('App\Models\Posts\PostComment');
+        //１つのポストに対してコメントはたくさんつけられるため、hasMany
     }
 
     public function subCategories(){

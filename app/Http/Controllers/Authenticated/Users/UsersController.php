@@ -21,9 +21,7 @@ class UsersController extends Controller
         $updown = $request->updown;
         $gender = $request->sex;
         $role = $request->role;
-        $subjects = $request->subject;
-        if ($subjects !== null) {
-        $subject = Subjects::whereIn('id',$subjects);}
+        $subjects = $request->input('subject');
         //dd($subject);// ここで検索時の科目を受け取る
         $userFactory = new SearchResultFactories();
         $users = $userFactory->initializeUsers($keyword, $category, $updown, $gender, $role, $subjects);

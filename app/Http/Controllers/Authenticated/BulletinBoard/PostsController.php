@@ -98,7 +98,7 @@ class PostsController extends Controller
         $like = new Like;
         return view('authenticated.bulletinboard.post_like', compact('posts', 'like'));
     }
-
+    //いいねを登録するメソッド
     public function postLike(Request $request){
         $user_id = Auth::id();
         $post_id = $request->post_id;

@@ -19,6 +19,7 @@ class PostComment extends Model
 
     public function post(){
         return $this->belongsTo('App\Models\Posts\Post');
+        //ポストは１つしかないからbelongTo
     }
 
     public function commentUser($user_id){
