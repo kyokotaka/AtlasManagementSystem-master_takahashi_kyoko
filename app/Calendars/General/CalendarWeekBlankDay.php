@@ -10,7 +10,7 @@ class CalendarWeekBlankDay extends CalendarWeekDay{
    * @return
    */
 
-   function render(){
+   function render(){//何も入力できない状態にする。
      return '';
    }
 

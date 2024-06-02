@@ -13,7 +13,7 @@ class CalendarWeekDay{
   }
 
   function getClassName(){
-    return "day-" . strtolower($this->carbon->format("D"));
+    return "day-" . strtolower($this->carbon->format("D"));//DにすることですることでSunなどの略式で表示できる。またday-にすることで小文字になる。
   }
 
   function pastClassName(){
@@ -25,7 +25,7 @@ class CalendarWeekDay{
    */
 
    function render(){
-     return '<p class="day">' . $this->carbon->format("j"). '日</p>';
+     return '<p class="day">' . $this->carbon->format("j"). '日</p>';//一桁の時十の位に０がつく
    }
 
    function selectPart($ymd){
@@ -83,7 +83,7 @@ class CalendarWeekDay{
    }
 
    function authReserveDate($reserveDate){
-     return Auth::user()->reserveSettings->where('setting_reserve', $reserveDate);
+     return Auth::user()->reserveSettings->where('setting_reserve', $reserveDate);//ログインしているユーザーが予約したデータを取得している。
    }
 
 }

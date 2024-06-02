@@ -20,7 +20,9 @@ class CalendarsController extends Controller
     }
 
     public function reserveDetail($date, $part){
+        //予約設定のテーブルとusersのテーブルを紐付けて開講日のカラムから日付を、部のカラムから部のデータを探し一致させる。
         $reservePersons = ReserveSettings::with('users')->where('setting_reserve', $date)->where('setting_part', $part)->get();
+        //これを変数にする
         return view('authenticated.calendar.admin.reserve_detail', compact('reservePersons', 'date', 'part'));
     }
 
@@ -29,7 +31,7 @@ class CalendarsController extends Controller
         return view('authenticated.calendar.admin.reserve_setting', compact('calendar'));
     }
 
-    public function updateSettings(Request $request){
+    public function updateSettings(Request $request){//予約枠の登録（アップデート）
         $reserveDays = $request->input('reserve_day');
         foreach($reserveDays as $day => $parts){
             foreach($parts as $part => $frame){

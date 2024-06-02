@@ -14,6 +14,11 @@
           @if($errors->has('post_body'))
           <div class="error" style="font-size:10">{{ $errors->first('post_body') }}</div>
           @endif
+          <div class="category_area" style="font-size:10px; text-align: left;">
+            @foreach($post->subCategories as $subCategory)
+              {{ $subCategory->sub_category }}
+            @endforeach
+          </div>
           @if (Auth::user()->id == $post->user_id)
           <div>
             <span class="edit-modal-open" post_title="{{ $post->post_title }}" post_body="{{ $post->post }}" post_id="{{ $post->id }}">編集</span>

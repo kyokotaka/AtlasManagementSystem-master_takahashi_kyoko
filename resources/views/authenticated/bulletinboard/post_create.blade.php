@@ -7,8 +7,15 @@
       <p class="mb-0">カテゴリー</p>
       <select class="w-100" form="postCreate" name="post_category_id">
         @foreach($main_categories as $main_category)
-        <optgroup label="{{ $main_category->main_category }}"></optgroup>
-        <!-- サブカテゴリー表示 -->
+          <!-- オプトグループでメインカテゴリーを大項目にする -->
+          <optgroup label="{{ $main_category->main_category }}">
+        @foreach($sub_categories as $sub_category)
+          <!-- もしサブカテゴリーの中のメインカテゴリーidがメインカテゴリーのidと一致したら -->
+          @if($sub_category->main_category_id === $main_category->id)
+            <!-- サブカテゴリーのidを値として、サブカテゴリーを持ってくる -->
+            <option value="{{ $sub_category->id }}">{{ $sub_category->sub_category }}</option>
+          @endif
+        @endforeach
         </optgroup>
         @endforeach
       </select>
@@ -43,6 +50,11 @@
       <!-- サブカテゴリー追加 -->
       <div class="">
         <p class="m-0">サブカテゴリー</p>
+        <select name="main_category_id" form="subCategoryRequest">
+          @foreach($main_categories as $main_category)
+            <option value="{{ $main_category->id }}" form="subCategoryRequest">{{ $main_category->main_category }}</option>
+          @endforeach
+        </select>
         <input type="text" class="w-100" name="sub_category_name" form="subCategoryRequest">
         <input type="submit" value="追加" class="w-100 btn btn-primary p-0" form="subCategoryRequest">
       </div>

@@ -23,10 +23,10 @@ class SelectIdDetails implements DisplayUsers{
       $role = array($role);//$roleで送られてきた値を配列として返す。
     }
     $users = User::with('subjects')
-    ->whereIn('id', $keyword)//曖昧検索
+    ->whereIn('id', $keyword)
     ->where(function($q) use ($role, $gender){
-      $q->whereIn('sex', $gender)//曖昧検索
-      ->whereIn('role', $role);//曖昧検索
+      $q->whereIn('sex', $gender)
+      ->whereIn('role', $role);
     })
     ->whereHas('subjects', function($q) use ($subjects){//リレーションが存在し、かつそのリレーションに対して特定の条件が満たされる場合にのみ、条件を追加する。subjects=リレーションメソッド名
       $q->whereIn('subjects.id', $subjects);//whereInで曖昧検索をかける

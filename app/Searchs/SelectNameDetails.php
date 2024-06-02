@@ -17,7 +17,7 @@ class SelectNameDetails implements DisplayUsers{//implements=実装する
     }else{
       $role = array($role);//$roleで送られてきた値を配列として返す。
     }
-    $users = User::with('subjects')
+    $users = User::with('subjects')//ifにしていないのはどれか一つに引っ掛けるため
     ->where(function($q) use ($keyword){
       $q->Where('over_name', 'like', '%'.$keyword.'%')
       ->orWhere('under_name', 'like', '%'.$keyword.'%')

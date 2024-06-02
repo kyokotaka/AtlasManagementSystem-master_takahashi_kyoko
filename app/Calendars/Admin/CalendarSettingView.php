@@ -11,7 +11,7 @@ class CalendarSettingView{
   }
 
   public function getTitle(){
-    return $this->carbon->format('Y年n月');
+    return $this->carbon->format('Y年n月');//carbonクラスを通ってY年n月のフォーマットでタイトルを表示
   }
 
   public function render(){
@@ -29,13 +29,13 @@ class CalendarSettingView{
     $html[] = '<th class="border">日</th>';
     $html[] = '</tr>';
     $html[] = '</thead>';
-    $html[] = '<tbody>';
-    $weeks = $this->getWeeks();
+    $html[] = '<tbody>';//ここまででHTMLの記述をしている
+    $weeks = $this->getWeeks();//この表示をgetWeeksで使用する
 
-    foreach($weeks as $week){
-      $html[] = '<tr class="'.$week->getClassName().'">';
-      $days = $week->getDays();
-      foreach($days as $day){
+    foreach($weeks as $week){//ループさせて１週間を表示
+      $html[] = '<tr class="'.$week->getClassName().'">';//週カレンダーの処理
+      $days = $week->getDays();//週カレンダーから日カレンダーのオブジェクトを取得
+      foreach($days as $day){//日カレンダーオブジェクトをループさせながら、クラス名を出力し、<td>の中に日カレンダーを出力。
         $startDay = $this->carbon->format("Y-m-01");
         $toDay = $this->carbon->format("Y-m-d");
 
@@ -69,17 +69,17 @@ class CalendarSettingView{
     return implode("", $html);
   }
 
-  protected function getWeeks(){
+  protected function getWeeks(){//ループさせる目的の$weeksの処理を決めるのが目的
     $weeks = [];
-    $firstDay = $this->carbon->copy()->firstOfMonth();
-    $lastDay = $this->carbon->copy()->lastOfMonth();
-    $week = new CalendarWeek($firstDay->copy());
-    $weeks[] = $week;
-    $tmpDay = $firstDay->copy()->addDay(7)->startOfWeek();
-    while($tmpDay->lte($lastDay)){
-      $week = new CalendarWeek($tmpDay, count($weeks));
-      $weeks[] = $week;
-      $tmpDay->addDay(7);
+    $firstDay = $this->carbon->copy()->firstOfMonth();//月初めを表示
+    $lastDay = $this->carbon->copy()->lastOfMonth();//月終わりまで表示
+    $week = new CalendarWeek($firstDay->copy());//１週目と1日を取得
+    $weeks[] = $week;//ここまでで一週目を表示
+    $tmpDay = $firstDay->copy()->addDay(7)->startOfWeek();//月初めから７日間を表示させ次の週の日付を取得する
+    while($tmpDay->lte($lastDay)){//月末までループ
+      $week = new CalendarWeek($tmpDay, count($weeks));//何週目かをカレンダーオブジェクトに伝える。オブジェクト＝メソッドをひとまとめにしたもの
+      $weeks[] = $week;//viewに表示
+      $tmpDay->addDay(7);//７日足す。これ翌週に移動できる
     }
     return $weeks;
   }

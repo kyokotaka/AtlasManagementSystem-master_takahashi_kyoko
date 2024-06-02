@@ -11,6 +11,8 @@ use App\Models\Posts\PostComment;
 use App\Models\Posts\Like;
 use App\Models\Users\User;
 use App\Http\Requests\BulletinBoard\PostFormRequest;
+use App\Http\Requests\BulletinBoard\MainCategoriesRequest;
+use App\Http\Requests\BulletinBoard\SubCategoriesRequest;
 use Auth;
 use App\Http\Requests\CommentFormRequest;
 //useしないとターゲットクラスが存在しませんとなる。
@@ -47,16 +49,24 @@ class PostsController extends Controller
 
     public function postInput(){
         $main_categories = MainCategory::get();
-        return view('authenticated.bulletinboard.post_create', compact('main_categories'));
+        $sub_categories = SubCategory::get();
+        return view('authenticated.bulletinboard.post_create', compact('main_categories','sub_categories'));
     }
 
     public function postCreate(PostFormRequest $request){
         $post = Post::create([
             'user_id' => Auth::id(),
+            // 'post_category_id' => $request -> post_category_id,
             'post_title' => $request->post_title,
             'post' => $request->post_body,
-            'created_at' =>$request->created_at
+            // 'created_at' =>$request->created_at
         ]);
+        $post->subCategories()->attach($request->post_category_id);//$postをsubCategoriesのリレーションを通すことでattachできる。
+
+        // $post_sub_category = Post_sub_category::create([
+        //     'post_id' => $post->post_id,
+        //     'sub_category_id' => $request->post_category_id
+        // ]);この方法は別途モデルを作成する必要がある
         return redirect()->route('post.show');
     }
 
@@ -72,8 +82,15 @@ class PostsController extends Controller
         Post::findOrFail($id)->delete();
         return redirect()->route('post.show');
     }
-    public function mainCategoryCreate(Request $request){
+    public function mainCategoryCreate(MainCategoriesRequest $request){
         MainCategory::create(['main_category' => $request->main_category_name]);
+        return redirect()->route('post.input');
+    }
+
+    public function subCategoryCreate(SubCategoriesRequest $request){
+        //dd($request);
+        SubCategory::create(['main_category_id' => $request->main_category_id,
+                             'sub_category' => $request->sub_category_name]);//name属性
         return redirect()->route('post.input');
     }
 
@@ -124,4 +141,10 @@ class PostsController extends Controller
 
         return response()->json();
     }
+    public function postLikeCount(){
+        $like_counts=Like::likeCounts();
+        dd($like_counts);
+        return view('posts.show', compact('post', 'likeCount'));
+    }
+    
 }

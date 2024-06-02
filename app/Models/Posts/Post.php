@@ -3,7 +3,7 @@
 namespace App\Models\Posts;
 
 use Illuminate\Database\Eloquent\Model;
-
+use App\Models\Posts\Like;
 class Post extends Model
 {
     const UPDATED_AT = null;
@@ -22,7 +22,7 @@ class Post extends Model
 
     public function likes()
     {
-        return $this->hasMany('App\Models\Posts\Like');
+        return $this->hasMany('App\Models\Posts\Like','like_post_id');
         //1つのポストに対してたくさんいいねできる
     }
 
