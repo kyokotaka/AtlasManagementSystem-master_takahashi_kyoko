@@ -25,7 +25,7 @@ class SubCategoriesRequest extends FormRequest
     {
         return [
             'main_category_id' => 'required|present',
-            'sub_category_name' => 'required|string|max:100|unique:sub_categories'
+            'sub_category_name' => 'required|string|max:100|unique:sub_categories,sub_category'//今回はネーム属性とカラム名が異なるため、第二引数にカラム名を指定する必要がある。
         ];
     }
 
