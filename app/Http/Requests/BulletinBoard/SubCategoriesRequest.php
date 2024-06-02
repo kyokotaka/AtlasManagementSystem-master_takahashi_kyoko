@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\BulletinBoard;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -32,6 +32,7 @@ class SubCategoriesRequest extends FormRequest
     public function messages(){
         return [
             'sub_category_name.required' =>'必ず入力してください。',
+            'sub_category_name.unique' =>'すでに存在しています。'
         ];
     }
 }

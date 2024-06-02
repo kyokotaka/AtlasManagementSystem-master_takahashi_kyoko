@@ -16,6 +16,7 @@
           <div>
             @if(Auth::user()->is_Like($post->id))
             <p class="m-0"><i class="fas fa-heart un_like_btn" post_id="{{ $post->id }}"></i><span class="like_counts{{ $post->id }}">{{$like->likeCounts($post->id)}}</span></p>
+            <!--showメソッドの中にある$likeを使用し、それをlikeCountsに通す。引数にポストのidを持ってくることでそのidに何人いいねしているかをカウントできる。 -->
             @else
             <p class="m-0"><i class="fas fa-heart like_btn" post_id="{{ $post->id }}"></i><span class="like_counts{{ $post->id }}"></span></p>
             @endif
