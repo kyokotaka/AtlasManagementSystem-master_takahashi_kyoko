@@ -8,7 +8,7 @@ class CalendarWeek{//その週のカレンダーの出力
   protected $index = 0;
 
   function __construct($date, $index = 0){
-    $this->carbon = new Carbon($date);
+    $this->carbon = new Carbon($date);//今日の日付でカレンダーを生成
     $this->index = $index;
   }
 

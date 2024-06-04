@@ -20,8 +20,9 @@ class CalendarWeekDay{
   }
 
   function everyDay(){
-    return $this->carbon->format("Y-m-d");
-  }
+    return $this->carbon->format("Y-m-d");//今日の日付を取得。 $this->carbon = new Carbon($date);で今日の日を取得しているため
+    }
+  
 
   function dayPartCounts($ymd){
     $html = [];

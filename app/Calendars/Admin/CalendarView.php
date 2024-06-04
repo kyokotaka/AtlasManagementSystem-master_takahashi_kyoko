@@ -33,9 +33,9 @@ class CalendarView{
 
     $weeks = $this->getWeeks();
 
-    foreach($weeks as $week){
+    foreach($weeks as $week){//１週間をループさせる
       $html[] = '<tr class="'.$week->getClassName().'">';
-      $days = $week->getDays();
+      $days = $week->getDays();//週の初めと終わりを取得
       foreach($days as $day){
         $startDay = $this->carbon->format("Y-m-01");
         $toDay = $this->carbon->format("Y-m-d");
@@ -59,12 +59,12 @@ class CalendarView{
 
   protected function getWeeks(){
     $weeks = [];
-    $firstDay = $this->carbon->copy()->firstOfMonth();
-    $lastDay = $this->carbon->copy()->lastOfMonth();
-    $week = new CalendarWeek($firstDay->copy());
+    $firstDay = $this->carbon->copy()->firstOfMonth();//月初めを取得
+    $lastDay = $this->carbon->copy()->lastOfMonth();//月終わりを取得
+    $week = new CalendarWeek($firstDay->copy());//１週目。1日目を指定している。
     $weeks[] = $week;
-    $tmpDay = $firstDay->copy()->addDay(7)->startOfWeek();
-    while($tmpDay->lte($lastDay)){
+    $tmpDay = $firstDay->copy()->addDay(7)->startOfWeek();//7日足して次の週を始める記述
+    while($tmpDay->lte($lastDay)){//7日足す処理を月末まで繰り返す
       $week = new CalendarWeek($tmpDay, count($weeks));
       $weeks[] = $week;
       $tmpDay->addDay(7);

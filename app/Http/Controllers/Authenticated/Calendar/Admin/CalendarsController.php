@@ -15,7 +15,7 @@ use DB;
 class CalendarsController extends Controller
 {
     public function show(){
-        $calendar = new CalendarView(time());
+        $calendar = new CalendarView(time());//現在の時刻を渡し今月のカレンダーを作成
         return view('authenticated.calendar.admin.calendar', compact('calendar'));
     }
 
@@ -27,7 +27,7 @@ class CalendarsController extends Controller
     }
 
     public function reserveSettings(){
-        $calendar = new CalendarSettingView(time());
+        $calendar = new CalendarSettingView(time());//予約枠登録画面
         return view('authenticated.calendar.admin.reserve_setting', compact('calendar'));
     }
 

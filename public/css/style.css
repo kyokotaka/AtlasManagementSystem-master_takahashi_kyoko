@@ -249,3 +249,9 @@ li{
 .subject_inner{
   display:none;
 }
+
+
+/* カレンダー */
+.gray{
+  background-color: #eee;
+}
