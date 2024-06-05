@@ -1,5 +1,5 @@
 <?php
-namespace App\Calendars\Admin;
+namespace App\Calendars\Admin;//管理者用予約確認
 use Carbon\Carbon;
 use App\Models\Users\User;
 
@@ -46,6 +46,7 @@ class CalendarView{
         }
         $html[] = $day->render();
         $html[] = $day->dayPartCounts($day->everyDay());
+        //$html[] = '<p class="reserve-count"> ' .$day->dayPartCounts(). '</p>';
         $html[] = '</td>';
       }
       $html[] = '</tr>';

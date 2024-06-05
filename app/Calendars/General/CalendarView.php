@@ -59,14 +59,13 @@ class CalendarView{
           }
           if ($startDay <= $day->everyDay() && $toDay >= $day->everyDay()) { // 過去日の場合
             $html[] = '<p class="" style="font-size:12px;">' . $reservePart . '</p>';
+            $html[] = '<input type="hidden" name="getPart[]" value="" form="reserveParts">';
           }else{//未来日だったら
             $html[] = '<button type="submit" class="btn btn-danger p-0 w-75" name="delete_date" style="font-size:12px" value="' . $day->authReserveDate($day->everyDay())->first()->setting_reserve . '">' . $reservePart . '</button>';
             $html[] = '<input type="hidden" name="getPart[]" value="" form="reserveParts">';
           }
         }else{
-          if ($startDay <= $day->everyDay() && $toDay >= $day->everyDay()){
-            $html[] = '<p class="" style="font-size:12px;">' . "受付終了" . '</p>';
-          }else
+
           $html[] = $day->selectPart($day->everyDay());
         }
         $html[] = $day->getDate();
