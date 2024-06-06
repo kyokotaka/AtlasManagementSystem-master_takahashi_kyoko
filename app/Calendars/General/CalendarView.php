@@ -47,27 +47,28 @@ class CalendarView{
         }
         $html[] = $day->render();
 
-        if(in_array($day->everyDay(), $day->authReserveDay())){
-          //もしログインしているユーザーが予約をしていたら
-          $reservePart = $day->authReserveDate($day->everyDay())->first()->setting_part;
-          if($reservePart == 1){//$reservePartに入っている数値が1と一致していたら
-            $reservePart = "リモ1部";
-          }else if($reservePart == 2){//$reservePartに入っている数値が2と一致していたら
-            $reservePart = "リモ2部";
-          }else if($reservePart == 3){//$reservePartに入っている数値が3と一致していたら
-            $reservePart = "リモ3部";
-          }
-          if ($startDay <= $day->everyDay() && $toDay >= $day->everyDay()) { // 過去日の場合
-            $html[] = '<p class="" style="font-size:12px;">' . $reservePart . '</p>';
-            $html[] = '<input type="hidden" name="getPart[]" value="" form="reserveParts">';
-          }else{//未来日だったら
-            $html[] = '<button type="submit" class="btn btn-danger p-0 w-75" name="delete_date" style="font-size:12px" value="' . $day->authReserveDate($day->everyDay())->first()->setting_reserve . '">' . $reservePart . '</button>';
-            $html[] = '<input type="hidden" name="getPart[]" value="" form="reserveParts">';
-          }
-        }else{
-
-          $html[] = $day->selectPart($day->everyDay());
-        }
+       if (in_array($day->everyDay(), $day->authReserveDay())) {
+    // もしログインしているユーザーが予約をしていたら
+    $reservePart = $day->authReserveDate($day->everyDay())->first()->setting_part;
+    if ($reservePart == 1) { //$reservePartに入っている数値が1と一致していたら
+        $reservePart = "リモ1部";
+    } else if ($reservePart == 2) { //$reservePartに入っている数値が2と一致していたら
+        $reservePart = "リモ2部";
+    } else if ($reservePart == 3) { //$reservePartに入っている数値が3と一致していたら
+        $reservePart = "リモ3部";
+    }
+    if ($startDay <= $day->everyDay() && $toDay >= $day->everyDay()) { // 過去日の場合
+        $html[] = '<p class="" style="font-size:12px;">' . $reservePart . '</p>';
+        $html[] = '<input type="hidden" name="getPart[]" value="" form="reserveParts">';
+      } else { // 未来日
+        $html[] = '<button type="submit" class="btn btn-danger p-0 w-75" name="delete_date" style="font-size:12px" value="' . $day->authReserveDate($day->everyDay())->first()->setting_reserve . '">' . $reservePart . '</button>';
+        $html[] = '<input type="hidden" name="getPart[]" value="" form="reserveParts">';
+      }
+    } else if ($startDay <= $day->everyDay() && $toDay >= $day->everyDay()) { // 過去日の場合
+      $html[] = '<p class="m-auto p-0 w-75" style="font-size:12px">受付終了</p>';
+      } else { // 未来日
+      $html[] = $day->selectPart($day->everyDay());
+    }
         $html[] = $day->getDate();
         $html[] = '</td>';
       }
