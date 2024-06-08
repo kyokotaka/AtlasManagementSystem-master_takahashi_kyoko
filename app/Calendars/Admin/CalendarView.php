@@ -46,7 +46,6 @@ class CalendarView{
         }
         $html[] = $day->render();
         $html[] = $day->dayPartCounts($day->everyDay());
-        //$html[] = '<p class="reserve-count"> ' .$day->dayPartCounts(). '</p>';
         $html[] = '</td>';
       }
       $html[] = '</tr>';

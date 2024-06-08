@@ -20,6 +20,7 @@ class CalendarsController extends Controller
     }
 
     public function reserveDetail($date, $part){
+        dd($date,$part);
         //予約設定のテーブルとusersのテーブルを紐付けて開講日のカラムから日付を、部のカラムから部のデータを探し一致させる。
         $reservePersons = ReserveSettings::with('users')->where('setting_reserve', $date)->where('setting_part', $part)->get();
         //これを変数にする

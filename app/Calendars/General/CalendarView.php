@@ -43,37 +43,37 @@ class CalendarView{
         if($startDay <= $day->everyDay() && $toDay >= $day->everyDay()){//$startDay <= $day->everyDay()では月初めから今日まで、$toDay >= $day->everyDay()では今日から後の日を取得。$day->everyDayが範囲内にあるかを調べる
           $html[] = '<td class="calendar-td gray">';//今日からみて過去の日付だったら
         }else{
-          $html[] = '<td class="calendar-td '.$day->getClassName().'">';
+          $html[] = '<td class="calendar-td '.$day->getClassName().'">';//それではなく今月より前の日だったらグレーアウトする
         }
         $html[] = $day->render();
 
        if (in_array($day->everyDay(), $day->authReserveDay())) {
     // もしログインしているユーザーが予約をしていたら
-    $reservePart = $day->authReserveDate($day->everyDay())->first()->setting_part;
+    $reservePart = $day->authReserveDate($day->everyDay())->first()->setting_part;//予約しているデータを持ってくる
     if ($reservePart == 1) { //$reservePartに入っている数値が1と一致していたら
         $reservePart = "リモ1部";
     } else if ($reservePart == 2) { //$reservePartに入っている数値が2と一致していたら
         $reservePart = "リモ2部";
     } else if ($reservePart == 3) { //$reservePartに入っている数値が3と一致していたら
         $reservePart = "リモ3部";
-    }
-    if ($startDay <= $day->everyDay() && $toDay >= $day->everyDay()) { // 過去日の場合
-        $html[] = '<p class="" style="font-size:12px;">' . $reservePart . '</p>';
-        $html[] = '<input type="hidden" name="getPart[]" value="" form="reserveParts">';
-      } else { // 未来日
-        $html[] = '<button type="submit" class="btn btn-danger p-0 w-75" name="delete_date" style="font-size:12px" value="' . $day->authReserveDate($day->everyDay())->first()->setting_reserve . '">' . $reservePart . '</button>';
-        $html[] = '<input type="hidden" name="getPart[]" value="" form="reserveParts">';
-      }
-    } else if ($startDay <= $day->everyDay() && $toDay >= $day->everyDay()) { // 過去日の場合
-      $html[] = '<p class="m-auto p-0 w-75" style="font-size:12px">受付終了</p>';
-      } else { // 未来日
-      $html[] = $day->selectPart($day->everyDay());
-    }
+    }//部抽出のためのif文は終わり
+    if ($startDay <= $day->everyDay() && $toDay >= $day->everyDay()) { // 過去日の場合かつ予約をしていた場合
+      $html[] = '<p class="" style="font-size:12px;">' . $reservePart . '</p>';
+      $html[] = '<input type="hidden" name="getPart[]" value="" form="reserveParts">';
+  } else { // 未来日且つ予約をしていた場合
+      $html[] = '<button type="submit" class="btn btn-danger p-0 w-75" name="delete_date" style="font-size:12px" value="' . $day->authReserveDate($day->everyDay())->first()->setting_reserve . '">' . $reservePart . '</button>';
+      $html[] = '<input type="hidden" name="getPart[]" value="" form="reserveParts">';
+  }//予約のif文はここで終わり
+  } else { 
+      $html[] = $day->selectPart($day->everyDay());//予約をしていない未来日だったら
+
+}
+
         $html[] = $day->getDate();
         $html[] = '</td>';
-      }
+      }//foreach(day)の終わり
       $html[] = '</tr>';
-    }
+    }//foreach(week)の終わり
     $html[] = '</tbody>';
     $html[] = '</table>';
     $html[] = '</div>';
@@ -81,7 +81,7 @@ class CalendarView{
     $html[] = '<form action="/delete/calendar" method="post" id="deleteParts">'.csrf_field().'</form>';
 
     return implode('', $html);
-  }
+  }//renderの終わり
 
   protected function getWeeks(){
     $weeks = [];
