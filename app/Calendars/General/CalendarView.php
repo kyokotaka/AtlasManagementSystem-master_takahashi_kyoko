@@ -65,10 +65,13 @@ class CalendarView{
       $html[] = '<input type="hidden" name="getPart[]" value="" form="reserveParts">';
   }//予約のif文はここで終わり
   } else { 
+    if ($startDay <= $day->everyDay() && $toDay >= $day->everyDay()){
+      $html[] = '<p class="" style="font-size:12px;">受付終了</p>';
+      $html[] = '<input type="hidden" name="getPart[]" value="" form="reserveParts">';
+    }else{
       $html[] = $day->selectPart($day->everyDay());//予約をしていない未来日だったら
-
-}
-
+  }
+  }
         $html[] = $day->getDate();
         $html[] = '</td>';
       }//foreach(day)の終わり
