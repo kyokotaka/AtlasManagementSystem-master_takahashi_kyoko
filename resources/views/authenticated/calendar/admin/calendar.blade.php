@@ -7,6 +7,7 @@
     <p>{{ $calendar->getTitle() }}</p>
     <!-- カレンダーの本体を表示 -->
     <p>{!! $calendar->render() !!}</p>
+    
   </div>
 </div>
 @endsection

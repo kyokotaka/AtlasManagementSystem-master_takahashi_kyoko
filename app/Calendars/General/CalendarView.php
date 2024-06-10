@@ -61,7 +61,7 @@ class CalendarView{
       $html[] = '<p class="" style="font-size:12px;">' . $reservePart . '</p>';
       $html[] = '<input type="hidden" name="getPart[]" value="" form="reserveParts">';
   } else { // 未来日且つ予約をしていた場合
-      $html[] = '<button type="submit" class="btn btn-danger p-0 w-75" name="delete_date" style="font-size:12px" value="' . $day->authReserveDate($day->everyDay())->first()->setting_reserve . '">' . $reservePart . '</button>';
+      $html[] = '<button type="button" class="btn btn-danger p-0 w-75" name="delete_date" style="font-size:12px" value="' . $day->authReserveDate($day->everyDay())->first()->setting_reserve . '" data-toggle="modal" data-target="#modal' . $day->authReserveDate($day->everyDay())->first()->setting_reserve . '">' . $reservePart . '</button>';
       $html[] = '<input type="hidden" name="getPart[]" value="" form="reserveParts">';
   }//予約のif文はここで終わり
   } else { 
@@ -100,4 +100,5 @@ class CalendarView{
     }
     return $weeks;
   }
+  
 }

@@ -10,10 +10,16 @@
           <th class="w-25">ID</th>
           <th class="w-25">名前</th>
           <th class="w-25">場所</th>
-
         <tr class="text-center">
-          <td class="w-25"></td>
-          <td class="w-25"></td>
+          @foreach($reservePersons as $reservePerson)
+          <!-- データベースからReserveSettingsの情報が持ってこられている(ただし、どんなユーザーかまではわからない) -->
+          @foreach($reservePerson->users as $user)
+          <!-- ユーザーの情報をforeachさせたいため$reservePersonからusersのリレーションを使い持ってくる -->
+          <td class="w-25">{{$user->id}}</td>
+          <td class="w-25">{{$user->over_name}}{{$user->under_name}}</td>
+          <td class="w-25">リモート</td>
+          @endforeach
+          @endforeach
         </tr>
       </table>
     </div>

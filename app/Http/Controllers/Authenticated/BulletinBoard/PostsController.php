@@ -20,24 +20,28 @@ use App\Http\Requests\CommentFormRequest;
 class PostsController extends Controller
 {
     public function show(Request $request){
-        $posts = Post::with('user', 'postComments')->get();
-        $categories = MainCategory::get();
-        $like = new Like;
-        $post_comment = new Post;
+        $posts = Post::with('user', 'postComments')->get();//postテーブルの情報と一緒にuser,postCommentsを持ってくる（中身までは見られない）
+        $categories = MainCategory::get();//MainCategoryの情報を持ってくる
+        //dd($categories);
+        $like = new Like;//いいねするためのインスタンスを生成
+        $post_comment = new Post;//コメントするためのインスタンスを生成
         if(!empty($request->keyword)){
             $posts = Post::with('user', 'postComments')
             ->where('post_title', 'like', '%'.$request->keyword.'%')
             ->orWhere('post', 'like', '%'.$request->keyword.'%')->get();
         }else if($request->category_word){
             $sub_category = $request->category_word;
-            $posts = Post::with('user', 'postComments')->get();
+            $posts = Post::whereHas('')
+            //$posts = Post::with('user', 'postComments')
+            ->where()
+            get();
         }else if($request->like_posts){
             $likes = Auth::user()->likePostId()->get('like_post_id');
             $posts = Post::with('user', 'postComments')
             ->whereIn('id', $likes)->get();
-        }else if($request->my_posts){
-            $posts = Post::with('user', 'postComments')
-            ->where('user_id', Auth::id())->get();
+        // }else if($request->my_posts){
+        //     $posts = Post::with('user', 'postComments')
+        //     ->where('user_id', Auth::id())->get();
         }
         return view('authenticated.bulletinboard.posts', compact('posts', 'categories', 'like', 'post_comment'));
     }
@@ -143,7 +147,7 @@ class PostsController extends Controller
     }
     public function postLikeCount(){
         $like_counts=Like::likeCounts();
-        dd($like_counts);
+        //dd($like_counts);
         return view('posts.show', compact('post', 'likeCount'));
     }
     

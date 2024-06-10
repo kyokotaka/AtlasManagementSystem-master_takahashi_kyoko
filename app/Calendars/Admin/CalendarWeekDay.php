@@ -9,6 +9,7 @@ class CalendarWeekDay{
 
   function __construct($date){
     $this->carbon = new Carbon($date);
+    //dd($date);
   }
 
   function getClassName(){
@@ -25,6 +26,7 @@ class CalendarWeekDay{
   
 
   function dayPartCounts($ymd){
+    //dd($ymd);
     $html = [];
     $one_part = ReserveSettings::with('users')->where('setting_reserve', $ymd)->where('setting_part', '1')->first();//1部の予約の人数を持ってくる
     $two_part = ReserveSettings::with('users')->where('setting_reserve', $ymd)->where('setting_part', '2')->first();
@@ -33,14 +35,14 @@ class CalendarWeekDay{
     $html[] = '<div class="text-left">';
       if($one_part){
         // $html[] = '<a href="/calendar/{date}/{part}">';
-        $html[] = '<a href="/calendar/{date}/{part}"><p class="day_part m-0 pt-1">1部 </a>'. $one_part->users()->count() . '</p>';
-        // $html[] = '</a>';
+        $html[] = '<a href="/calendar/' . $ymd . '/1"><p class="day_part m-0 pt-1">1部 </a>'. $one_part->users()->count() . '</p>';
+        // 変数を途中に入れるときは.を使う。さらにリンクのときは''を使用する。
         }
       if($two_part){
-        $html[] = '<a href="/calendar/{date}/{part}"><p class="day_part m-0 pt-1">2部 </a>' . $two_part->users()->count() . '</p>';
+        $html[] = '<a href="/calendar/' . $ymd . '/2"><p class="day_part m-0 pt-1">2部 </a>' . $two_part->users()->count() . '</p>';
         }
       if($three_part){
-        $html[] = '<a href="/calendar/{date}/{part}"><p class="day_part m-0 pt-1">3部 </a>' . $three_part->users()->count() . '</p>';
+        $html[] = '<a href="/calendar/' . $ymd . '/3"><p class="day_part m-0 pt-1">3部 </a>' . $three_part->users()->count() . '</p>';
       }
     $html[] = '</div>';
 
