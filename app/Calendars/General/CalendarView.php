@@ -61,7 +61,24 @@ class CalendarView{
       $html[] = '<p class="" style="font-size:12px;">' . $reservePart . '</p>';
       $html[] = '<input type="hidden" name="getPart[]" value="" form="reserveParts">';
   } else { // 未来日且つ予約をしていた場合
-      $html[] = '<button type="button" class="btn btn-danger p-0 w-75" name="delete_date" style="font-size:12px" value="' . $day->authReserveDate($day->everyDay())->first()->setting_reserve . '" data-toggle="modal" data-target="#modal' . $day->authReserveDate($day->everyDay())->first()->setting_reserve . '">' . $reservePart . '</button>';
+      $html[] = '<button type="button" class="btn btn-danger cancel-modal-open p-0 w-75" name="delete_date" style="font-size:12px"  >' . $reservePart . '</button>';//data-targetとidは必ず同じ名前にする。（その名前で探すため）
+      // $html[] = '<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">';
+      // $html[] = '<form role="form" method="POST" action="/delete/calendar">';
+      // $html[] = ''. csrf_field();
+      // $html[] = '<div class="modal-dialog" role="document">';
+      // $html[] = '<div class="modal-content">';
+      // $html[] = '<div class="modal-body-day" name="day">';
+      // $html[] = '<div class="modal-body-part" name="part">';
+      // $html[] = '</div>';
+      // $html[] = '</div>';
+      // $html[] = '<div class="modal-footer">';
+      // $html[] = '<button type="button" class="btn btn-primary" data-dismiss="modal">閉じる</button>';
+      // $html[] = '<button type="submit" class="btn btn-danger">キャンセル</button>';
+      // $html[] = '</div>';
+      // $html[] = '</div>';
+      // $html[] = '</div>';
+      // $html[] = '</form>';
+      // $html[] = '</div>';
       $html[] = '<input type="hidden" name="getPart[]" value="" form="reserveParts">';
   }//予約のif文はここで終わり
   } else { 

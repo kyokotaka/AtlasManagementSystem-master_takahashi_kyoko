@@ -43,7 +43,15 @@ li{
   color:#FFF;
 }
 
+.sidebar i{
+  color:#FFF;
+}
+
 /* トップページ */
+.profile_title{
+  width:50px;
+}
+
 .user_status{
   border-radius:10px;
   background:#FFF;
