@@ -56,7 +56,7 @@
         <span class="error_message">{{ $errors->first('sub_category_name') }}</span>
         @endif
         <p class="m-0">サブカテゴリー</p>
-        <select name="main_category_id" form="subCategoryRequest">
+        <select name="main_category_id" form="subCategoryRequest" class="select_category">
           @foreach($main_categories as $main_category)
             <option value="{{ $main_category->id }}" form="subCategoryRequest">{{ $main_category->main_category }}</option>
           @endforeach

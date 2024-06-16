@@ -61,7 +61,7 @@ class CalendarView{
       $html[] = '<p class="" style="font-size:12px;">' . $reservePart . '</p>';
       $html[] = '<input type="hidden" name="getPart[]" value="" form="reserveParts">';
   } else { // 未来日且つ予約をしていた場合
-      $html[] = '<button type="button" class="btn btn-danger cancel-modal-open p-0 w-75" name="delete_date" style="font-size:12px"  >' . $reservePart . '</button>';//data-targetとidは必ず同じ名前にする。（その名前で探すため）
+      $html[] = '<button type="button" class="btn btn-danger cancel-modal-open p-0 w-75" name="delete_date" style="font-size:12px" day='.$day->everyDay().' part= '. $reservePart .'>' . $reservePart . '</button>';//data-targetとidは必ず同じ名前にする。（その名前で探すため）
       // $html[] = '<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">';
       // $html[] = '<form role="form" method="POST" action="/delete/calendar">';
       // $html[] = ''. csrf_field();

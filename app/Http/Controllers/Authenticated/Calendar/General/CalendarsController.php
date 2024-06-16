@@ -10,6 +10,7 @@ use App\Models\Calendars\Calendar;
 use App\Models\USers\User;
 use Auth;
 use DB;
+use Reserve_setting_users;
 
 class CalendarsController extends Controller
 {
@@ -39,8 +40,10 @@ class CalendarsController extends Controller
 
     public function delete(Request $request){
 //dd($request);
-        $delete_date =$request->input('delete_date');
+        $day = $request->input('day');
+        $part = $request->input('part');
         $user = Auth::user();
+        //dd($part);
         $user->reserveSettings()->detach($delete_date);
         return redirect()->route('calendar.general.show', ['user_id' => Auth::id()]);
     }

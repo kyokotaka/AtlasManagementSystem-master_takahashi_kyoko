@@ -49,12 +49,19 @@ li{
 
 /* トップページ */
 .profile_title{
-  width:50px;
+  position: absolute;
+  left: 140px;
+  top:10px;
+  font-size: 1.5em;
+  color: #beb7b7;
 }
 
 .user_status{
+  position: relative;
+  top: 60px;
   border-radius:10px;
   background:#FFF;
+  box-shadow:10px 10px 10px -10px;
 }
 
 /* スクール予約関連 */
@@ -223,6 +230,10 @@ li{
   cursor:pointer;
 }
 
+.select_category{
+  width: 100%;
+}
+
 /* ユーザー検索 */
 .reserve_users_area{
   display:flex;
@@ -258,8 +269,16 @@ li{
   display:none;
 }
 
+.subject_inner form{
+  display: flex;
+}
+
+form .subject_checkbox{
+  padding: 5px;
+}
 
 /* カレンダー */
 .gray{
   background-color: #eee;
 }
+
