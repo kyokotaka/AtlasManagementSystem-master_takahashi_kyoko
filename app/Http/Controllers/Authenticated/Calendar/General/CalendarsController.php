@@ -42,9 +42,21 @@ class CalendarsController extends Controller
 //dd($request);
         $day = $request->input('day');
         $part = $request->input('part');
-        $user = Auth::user();
-        //dd($part);
-        $user->reserveSettings()->detach($delete_date);
-        return redirect()->route('calendar.general.show', ['user_id' => Auth::id()]);
-    }
+        if ($part == "リモ1部") { //$reservePartに入っている数値が1と一致していたら
+            $part = 1;
+        } else if ($part == "リモ2部") { //$reservePartに入っている数値が2と一致していたら
+            $part = 2;
+        } else if ($part == "リモ3部") { //$reservePartに入っている数値が3と一致していたら
+            $part = 3;
+        }
+        //$user = Auth::user();
+        //dd($part,$day);
+            $reserve_settings = ReserveSettings::where('setting_reserve', $day)->where('setting_part', $part)->first();
+            //dd($reserve_settings);
+            $reserve_settings->increment('limit_users');
+            $reserve_settings->users()->detach(Auth::id());
+
+            return redirect()->route('calendar.general.show', ['user_id' => Auth::id()]);
+        }
+    
 }
