@@ -22,7 +22,6 @@
         <div class="w-100">
           <div class="modal-body">
             <div class="modal-body-day w-50 m-auto">
-              
               <input type="text" name="day" class="form-control w-100" readonly>
             </div>
             <div class="modal-body-part w-50 m-auto">

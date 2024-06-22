@@ -71,7 +71,8 @@
         </select>
       </div>
       <div class="">
-        <p class="m-0 search_conditions"><span>検索条件の追加</span></p>
+        <p class="m-0 search_conditions"><span>検索条件の追加</span>
+        <span class="arrow"></span>
         <div class="search_conditions_inner">
           <div>
             <label>性別</label>
