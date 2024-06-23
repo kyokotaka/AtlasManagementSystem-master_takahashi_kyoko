@@ -58,21 +58,21 @@
       </div>
       <div>
         <label>カテゴリ</label>
-        <select form="userSearchRequest" name="category">
+        <select form="userSearchRequest" name="category" class="name_id">
           <option value="name">名前</option>
           <option value="id">社員ID</option>
         </select>
       </div>
       <div>
         <label>並び替え</label>
-        <select name="updown" form="userSearchRequest">
+        <select name="updown" form="userSearchRequest" class="change">
           <option value="ASC">昇順</option>
           <option value="DESC">降順</option>
         </select>
       </div>
-      <div class="">
-        <p class="m-0 search_conditions"><span>検索条件の追加</span>
-        <span class="arrow"></span>
+      <div class="search_sort">
+        <input type="checkbox" id="sort" />
+        <label for="sort" class="search_conditions">検索条件の追加</label>
         <div class="search_conditions_inner">
           <div>
             <label>性別</label>
@@ -100,10 +100,10 @@
         </div>
       </div>
       <div>
-        <input type="reset" value="リセット" form="userSearchRequest">
+           <input type="submit" name="search_btn" value="検索" form="userSearchRequest" class="search_button">
       </div>
       <div>
-        <input type="submit" name="search_btn" value="検索" form="userSearchRequest">
+        <input type="reset" value="リセット" form="userSearchRequest">
       </div>
     </div>
     <form action="{{ route('user.show') }}" method="get" id="userSearchRequest"></form>
