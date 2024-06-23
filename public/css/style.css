@@ -147,7 +147,12 @@ li{
 }
 .post_bottom_area{
   justify-content: space-between;
+  /* padding-left: 80%; */
 }
+/* .view_category{
+  padding-left: 5px;
+} */
+
 .like_btn,
 .un_like_btn{
   cursor:pointer;
@@ -229,14 +234,36 @@ li{
   color:#FFF;
 }
 
+.freeword_area{
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.freeword_area input{
+  width: 70%;
+  height: 40px;
+  background-color: rgba(0, 0, 0, 0.05);
+  border-radius: 5px;
+  cursor: pointer;
+  border: none;
+}
+.freeword_area button{
+  width: 70px;
+}
+
+.all_category{
+  margin-top: 30px;
+}
+
 .my_like_btn{
   background-color: #d94c7a;
   opacity: 0.75;
   border-radius: 5px;
   color: #fff;
-  font-weight: 600;
-  transition: 0.3s;
+  font-weight: 500;
   border: none;
+  width: 50%;
+  height: 40px;
 }
 
 .my_posts_btn{
@@ -244,15 +271,82 @@ li{
   opacity: 0.75;
   border-radius: 5px;
   color: #fff;
-  font-weight: 600;
-  transition: 0.3s;
+  font-weight: 500;
   border: none;
+  width: 50%;
+  height: 40px;
+}
+
+.like_mypost_btn{
+  display: flex;
 }
 
 .main_categories span,
 .sub_categories li input{
   list-style:none;
   cursor:pointer;
+}
+/*アコーディオン全体*/
+.category {
+  border-bottom: 1px solid #9E9E9E;
+  width: 100%;
+  padding: 10px 10px;
+}
+
+.category input[type=checkbox] {
+  display: none; 
+  /* チェックボックスを隠す */
+}
+
+.category label {
+  cursor: pointer;
+  display: block;
+  text-decoration: none;
+  color: #000;
+  /* line-height: 1; */
+  position: relative;
+  /* padding: 10px; */
+}
+
+.sub_categories_list {
+  display: none;
+  margin: 0;
+  padding: 0;
+  margin-bottom: 1px;
+}
+
+.category input[type=checkbox]:checked + label + .sub_categories_list {
+  display: block;
+}
+
+.category label:after {
+  content: "";
+  display: block;
+  width: 8px;
+  height: 8px;
+  border-top: #000 2px solid;
+  border-right: #000 2px solid;
+  transform: rotate(135deg);
+  position: absolute;
+  right: 2%;
+  top: 0;
+  bottom: 15%;
+  margin: auto;
+}
+
+.category input[type=checkbox]:checked + label:after {
+  content: "";
+  display: block;
+  width: 8px;
+  height: 8px;
+  border-top: #000 2px solid;
+  border-right: #000 2px solid;
+  transform: rotate(-45deg);
+  position: absolute;
+  right: 2%;
+  top: 7%;
+  bottom: 0;
+  margin: auto;
 }
 
 .select_category{
@@ -272,6 +366,12 @@ li{
 }
 
 /* ユーザー検索 */
+.src_label{
+margin-top:50px ;
+font-size: 1.5rem;
+
+}
+
 .reserve_users_area{
   display:flex;
   flex-wrap:wrap;
@@ -300,35 +400,84 @@ li{
 
 }
 
+
 .search_area input, .search_area select{
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: auto;
-  background-color: rgba(0, 0, 0, 0.05);
+  background-color:#dfdfdf;
   border-radius: 10px;
   padding: 0px 10px;
   cursor: pointer;
   border: none;
-  max-width: 200%;
-}
-.free_word, .name_id, .change{
-  width: 100%;
-  height: 30px;
-  border-radius: 5px;
+  height: 45px;
 }
 
+
+/* 回転矢印 */
+.arrow_down {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin: 0 10px;
+  border-top: 1px solid #000;
+  border-left: 1px solid #000;
+  transform: rotate(45deg);
+  transition: transform 0.3s;
+  position: absolute;
+  top:36%;
+
+}
+
+.arrow_down.rotation {
+  transform: rotate(225deg); /* 180度回転 */
+}
 /* .selected_engineer input[type=checkbox]{
   display: flex;
 } */
 
-.search_button{
+.search_button input{
   background: #03AAD2;
+  color: #fff;
+  width: 60%;
+}
+
+.reset_btn input{
+  background: none;
+  color:#03AAD2;
+  width: 60%;
 }
 
 .search_conditions_inner{
   display:none;
 }
+
+.select_sex span{
+  display: flex;
+  align-items: center;
+}
+
+.sex_options {
+  display: flex;
+}
+
+
+.engineer_option {
+  display: flex;
+  gap: 10px; /* アイテム間のスペースを調整 */
+
+}
+
+.engineer_option label {
+  display: flex;
+  align-items: center;
+}
+
+.engineer_option input[type="checkbox"] {
+  margin-right: 5px; /* チェックボックスとテキストの間のスペースを調整 */
+}
+
 
 .subject_edit_btn{
   font-size:12px;
@@ -379,119 +528,6 @@ form .subject_checkbox{
   }
 
 
-  /*アコーディオン全体*/
-  .category {
-    border-bottom: 1px solid #9E9E9E;
-    width: 100%;
-    padding: 10px 10px 20px;
-}
-
-.category input[type=checkbox] {
-    display: none; 
-    /* チェックボックスを隠す */
-}
-
-.category label {
-    cursor: pointer;
-    display: block;
-    text-decoration: none;
-    color: #000;
-    line-height: 1;
-    position: relative;
-    margin: 0 0 10px;
-    padding: 10px;
-}
-
-.sub_categories_list {
-    display: none;
-    margin: 0;
-    padding: 0;
-    margin-bottom: 1px;
-}
-
-.category input[type=checkbox]:checked + label + .sub_categories_list {
-    display: block;
-}
-
-.category label:after {
-    content: "";
-    display: block;
-    width: 8px;
-    height: 8px;
-    border-top: #000 2px solid;
-    border-right: #000 2px solid;
-    transform: rotate(135deg);
-    position: absolute;
-    right: 2%;
-    top: 0;
-    bottom: 15%;
-    margin: auto;
-}
-
-.category input[type=checkbox]:checked + label:after {
-    content: "";
-    display: block;
-    width: 8px;
-    height: 8px;
-    border-top: #000 2px solid;
-    border-right: #000 2px solid;
-    transform: rotate(-45deg);
-    position: absolute;
-    right: 2%;
-    top: 7%;
-    bottom: 0;
-    margin: auto;
-}
 
 
-.search_sort{
-  border-bottom: 1px solid #9E9E9E;
-  width: 100%;
-  padding: 10px 10px 20px;
-}
-
-
-.search_sort input[type=checkbox] {
-  display: none; /* チェックボックスを隠す */
-}
-
-.search_conditions_inner {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  margin-bottom: 1px;
-  height: 0;
-  overflow: hidden;
-}
-
-/* 閉じた状態の矢印描画 */
-.search_sort label:after {
-  content: "";
-  display: block;
-  width: 8px;
-  height: 8px;
-  border-top: #000 2px solid;
-  border-right: #000 2px solid;
-  transform: rotate(135deg);
-  transform: translateY(-50%) rotate(135deg);
-}
-
-/* 開いた状態の矢印描画 */
-.search_sort input[type=checkbox]:checked + label:after {
-  content:"";
-  display:block;
-  width:8px;
-  height:8px;
-  border-top: #000 2px solid;
-  border-right: #000 2px solid;
-  -webkit-transform: rotate(-45deg);
-  -ms-transform: rotate(-45deg);
-  transform: rotate(-45deg);
-}
-
-/* 開いた状態の内容表示 */
-.search_sort input[type=checkbox]:checked + label + .search_conditions_inner {
-  height: auto;
-  padding: 10px 0;
-  /* overflow: visible; */
-}
+/*  */

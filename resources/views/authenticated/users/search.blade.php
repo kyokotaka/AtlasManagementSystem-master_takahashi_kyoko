@@ -1,7 +1,7 @@
 @extends('layouts.sidebar')
 
 @section('content')
-<p>ユーザー検索</p>
+<!-- <p>ユーザー検索</p> -->
 <div class="search_content w-100 border d-flex">
   <div class="reserve_users_area">
     @foreach($users as $user)
@@ -51,8 +51,11 @@
     </div>
     @endforeach
   </div>
-  <div class="search_area w-25 border">
-    <div class="">
+  <div class="search_area w-25 ">
+    <div class="user_src">
+      <div class="src_label">
+        <span>検索</span>
+      </div>
       <div>
         <input type="text" class="free_word" name="keyword" placeholder="キーワードを検索" form="userSearchRequest">
       </div>
@@ -71,14 +74,16 @@
         </select>
       </div>
       <div class="search_sort">
-        <input type="checkbox" id="sort" />
-        <label for="sort" class="search_conditions">検索条件の追加</label>
+        <label class="search_conditions">検索条件の追加</label>
+        <div class="arrow_down"></div>
         <div class="search_conditions_inner">
-          <div>
+          <div class="select_sex">
             <label>性別</label>
+            <div class="sex_options">
             <span>男</span><input type="radio" name="sex" value="1" form="userSearchRequest">
             <span>女</span><input type="radio" name="sex" value="2" form="userSearchRequest">
             <span>その他</span><input type="radio" name="sex" value="3" form="userSearchRequest">
+          </div>
           </div>
           <div>
             <label>権限</label>
@@ -92,17 +97,19 @@
           </div>
           <div class="selected_engineer">
             <label>選択科目</label>
+            <div class="engineer_option">
             <!-- []をつけることで複数の値を送ることができる -->
             <p>国語<input type="checkbox" name="subject[]" form="userSearchRequest" value="1"></p>
             <p>数学<input type="checkbox" name="subject[]" form="userSearchRequest" value="2"></p>
             <p>英語<input type="checkbox" name="subject[]" form="userSearchRequest" value="3"></p>
           </div>
+          </div>
         </div>
       </div>
-      <div>
-           <input type="submit" name="search_btn" value="検索" form="userSearchRequest" class="search_button">
+      <div class="search_button">
+           <input type="submit" name="search_btn" value="検索" form="userSearchRequest">
       </div>
-      <div>
+      <div class="reset_btn">
         <input type="reset" value="リセット" form="userSearchRequest">
       </div>
     </div>
