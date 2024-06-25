@@ -16,6 +16,16 @@ class CalendarWeekDay{
     return "day-" . strtolower($this->carbon->format("D"));
   }
 
+  function pastClassName() {
+    $today = Carbon::now()->format("Y-m-d");
+    if ($this->carbon->isPast()) {
+      if ($this->carbon->isWeekend()) {
+        return "past-weekend-" . strtolower($this->carbon->format("D"));
+      }
+    }
+    return "";
+  }
+
   function render(){
     return '<p class="day">' . $this->carbon->format("j") . '日</p>';
   }

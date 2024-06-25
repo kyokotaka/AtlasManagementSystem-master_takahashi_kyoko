@@ -99,9 +99,18 @@
             <label>選択科目</label>
             <div class="engineer_option">
             <!-- []をつけることで複数の値を送ることができる -->
-            <p>国語<input type="checkbox" name="subject[]" form="userSearchRequest" value="1"></p>
-            <p>数学<input type="checkbox" name="subject[]" form="userSearchRequest" value="2"></p>
-            <p>英語<input type="checkbox" name="subject[]" form="userSearchRequest" value="3"></p>
+            <div class="checkbox-item">
+    <p>国語</p>
+    <input type="checkbox" name="subject[]" form="userSearchRequest" value="1">
+  </div>
+  <div class="checkbox-item">
+    <p>数学</p>
+    <input type="checkbox" name="subject[]" form="userSearchRequest" value="2">
+  </div>
+  <div class="checkbox-item">
+    <p>英語</p>
+    <input type="checkbox" name="subject[]" form="userSearchRequest" value="3">
+  </div>
           </div>
           </div>
         </div>

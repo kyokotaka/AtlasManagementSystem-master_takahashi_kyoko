@@ -16,9 +16,16 @@ class CalendarWeekDay{
     return "day-" . strtolower($this->carbon->format("D"));//DにすることですることでSunなどの略式で表示できる。またday-にすることで小文字になる。
   }
 
-  function pastClassName(){
-    return;
+  function pastClassName() {
+    $today = Carbon::now()->format("Y-m-d");
+    if ($this->carbon->isPast()) {
+      if ($this->carbon->isWeekend()) {
+        return "past-weekend-" . strtolower($this->carbon->format("D"));
+      }
+    }
+    return "";
   }
+  
 
   /**
    * @return

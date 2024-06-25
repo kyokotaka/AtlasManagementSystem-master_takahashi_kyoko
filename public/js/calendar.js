@@ -5,6 +5,8 @@
         var part = $(this).attr('part');
         $('.modal-body-day input').val(day);
         $('.modal-body-part input').val(part);
+        $('.modal-body-day hidden').val(day);
+        $('.modal-body-part hidden').val(part);
         return false;
       });
       $('.js-modal-close').on('click', function () {

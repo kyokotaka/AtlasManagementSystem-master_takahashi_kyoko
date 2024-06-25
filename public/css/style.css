@@ -78,6 +78,15 @@ li{
 .day-sun{
   color:#FF0000;
 }
+
+.past-weekend-sat {
+ color: #0000FF;
+}
+
+.past-weekend-sun {
+  color: #FF0000;
+}
+
 .past-day{
   background:#EEE;
 }
@@ -123,6 +132,16 @@ li{
     top: 50%;
     transform: translate(-50%,-50%);
     width: 60%;
+}
+
+.cancel-modal-btn {
+  display: flex;
+  justify-content: space-between; /* 均等に配置 */
+  align-items: center; /* 垂直方向に中央揃え */
+}
+
+.cancel-modal-btn button {
+  margin: 0 10px; /* ボタン間にスペースを追加 */
 }
 
 /* 掲示板 */
@@ -430,6 +449,8 @@ font-size: 1.5rem;
 
 }
 
+
+
 .arrow_down.rotation {
   transform: rotate(225deg); /* 180度回転 */
 }
@@ -470,12 +491,21 @@ font-size: 1.5rem;
 }
 
 .engineer_option label {
-  display: flex;
+
   align-items: center;
 }
 
 .engineer_option input[type="checkbox"] {
   margin-right: 5px; /* チェックボックスとテキストの間のスペースを調整 */
+}
+
+.checkbox-item {
+  display: flex;
+  align-items: center;
+}
+
+.checkbox-item p {
+  margin: 0 10px 0 0; /* テキストとチェックボックスの間の隙間 */
 }
 
 

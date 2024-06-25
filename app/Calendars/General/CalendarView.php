@@ -34,16 +34,16 @@ class CalendarView{
     $weeks = $this->getWeeks();
     foreach($weeks as $week){
       $html[] = '<tr class="'.$week->getClassName().'">';
-
       $days = $week->getDays();
+
       foreach($days as $day){
         $startDay = $this->carbon->copy()->format("Y-m-01");
         $toDay = $this->carbon->copy()->format("Y-m-d");
 
-        if($startDay <= $day->everyDay() && $toDay >= $day->everyDay()){//$startDay <= $day->everyDay()では月初めから今日まで、$toDay >= $day->everyDay()では今日から後の日を取得。$day->everyDayが範囲内にあるかを調べる
-          $html[] = '<td class="calendar-td gray">';//今日からみて過去の日付だったら
-        }else{
-          $html[] = '<td class="calendar-td '.$day->getClassName().'">';//それではなく今月より前の日だったらグレーアウトする
+        if($startDay <= $day->everyDay() && $toDay >= $day->everyDay()){
+          $html[] = '<td class="calendar-td gray ' . $day->pastClassName() . '">';
+        } else {
+          $html[] = '<td class="calendar-td ' . $day->getClassName() . '">';
         }
         $html[] = $day->render();
 
@@ -62,23 +62,6 @@ class CalendarView{
       $html[] = '<input type="hidden" name="getPart[]" value="" form="reserveParts">';
   } else { // 未来日且つ予約をしていた場合
       $html[] = '<button type="button" class="btn btn-danger cancel-modal-open p-0 w-75" name="delete_date" style="font-size:12px" day='.$day->everyDay().' part= '. $reservePart .'>' . $reservePart . '</button>';//data-targetとidは必ず同じ名前にする。（その名前で探すため）
-      // $html[] = '<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">';
-      // $html[] = '<form role="form" method="POST" action="/delete/calendar">';
-      // $html[] = ''. csrf_field();
-      // $html[] = '<div class="modal-dialog" role="document">';
-      // $html[] = '<div class="modal-content">';
-      // $html[] = '<div class="modal-body-day" name="day">';
-      // $html[] = '<div class="modal-body-part" name="part">';
-      // $html[] = '</div>';
-      // $html[] = '</div>';
-      // $html[] = '<div class="modal-footer">';
-      // $html[] = '<button type="button" class="btn btn-primary" data-dismiss="modal">閉じる</button>';
-      // $html[] = '<button type="submit" class="btn btn-danger">キャンセル</button>';
-      // $html[] = '</div>';
-      // $html[] = '</div>';
-      // $html[] = '</div>';
-      // $html[] = '</form>';
-      // $html[] = '</div>';
       $html[] = '<input type="hidden" name="getPart[]" value="" form="reserveParts">';
   }//予約のif文はここで終わり
   } else { 
