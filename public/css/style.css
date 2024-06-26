@@ -72,10 +72,10 @@ li{
 .day-blank{
   background:#D3D3D3;
 }
-.day-sat{
+.day-sat,.border_st{
   color:#0000FF;
 }
-.day-sun{
+.day-sun,.border_sn{
   color:#FF0000;
 }
 
@@ -110,6 +110,32 @@ li{
   width:70%;
 }
 
+/* .calendar{
+  background-color: #FFF;
+  border-radius: 5px;
+  box-shadow:10px 10px 10px -10px;
+} */
+
+.setting{
+  background-color: #FFF;
+  border-radius: 10px;
+  box-shadow:10px 10px 10px -10px;
+}
+
+.setting p{
+  text-align: center;
+}
+
+.reserve{
+  background-color: #FFF;
+  border-radius: 10px;
+  box-shadow:10px 10px 10px -10px;
+  padding: 20px;
+}
+
+.reserve .year_mon{
+  text-align: center;
+}
 /* モーダル */
 .modal{
     display: none;
@@ -136,12 +162,12 @@ li{
 
 .cancel-modal-btn {
   display: flex;
-  justify-content: space-between; /* 均等に配置 */
-  align-items: center; /* 垂直方向に中央揃え */
+  justify-content: space-between;
+  align-items: center; 
 }
 
 .cancel-modal-btn button {
-  margin: 0 10px; /* ボタン間にスペースを追加 */
+  margin: 0 10px; 
 }
 
 /* 掲示板 */

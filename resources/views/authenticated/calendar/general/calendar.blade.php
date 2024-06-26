@@ -29,7 +29,7 @@
               <input type="hidden" name="part" class="form-control w-100" readonly>
             </div>
           </div>
-          <div class="w-50 m-auto cancel-modal-btn d-flex m-10px">
+          <div class="w-50 m-auto cancel-modal-btn d-flex m">
             <button type="button" class="btn btn-primary js-modal-close" data-dismiss="modal">閉じる</button>
             <button type="submit" class="btn btn-danger">キャンセル</button>
           </div>

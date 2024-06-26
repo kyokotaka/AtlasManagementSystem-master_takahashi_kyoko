@@ -14,7 +14,7 @@ use App\Http\Requests\BulletinBoard\PostFormRequest;
 use App\Http\Requests\BulletinBoard\MainCategoriesRequest;
 use App\Http\Requests\BulletinBoard\SubCategoriesRequest;
 use Auth;
-use App\Http\Requests\CommentFormRequest;
+use App\Http\Requests\BulletinBoard\CommentFormRequest;
 //useしないとターゲットクラスが存在しませんとなる。
 
 class PostsController extends Controller
