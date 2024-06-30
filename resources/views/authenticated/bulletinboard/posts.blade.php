@@ -29,7 +29,7 @@
     </div>
     @endforeach
   </div>
-  <div class="other_area border">
+  <div class="other_area ">
     <div class=" m-4">
       <div class=""><a class="btn btn-info post_btn w-100" href="{{ route('post.input') }}" role="button">投稿</a></div>
       <div class="freeword_area">

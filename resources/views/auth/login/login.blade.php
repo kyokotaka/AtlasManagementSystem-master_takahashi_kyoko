@@ -13,20 +13,21 @@
   <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
 </head>
 <body>
+<div class="all">
   <div class="atlas_img">
     <img src="/image/atlas-black.png">
   </div>
   <form action="{{ route('loginPost') }}" method="POST">
-    <div class="w-100 vh-100 d-flex " style="align-items:center; justify-content:center;">
-      <div class="border vh-50 w-25 login_area">
+    <div class="" style="align-items:center; justify-content:center;">
+      <div class="login_area">
         <div class="w-75 m-auto pt-5">
-          <label class="d-block m-0" style="font-size:13px;">メールアドレス</label>
+          <label>メールアドレス</label>
           <div class="border-bottom border-primary w-100">
             <input type="text" class="w-100 border-0" name="mail_address">
           </div>
         </div>
         <div class="w-75 m-auto pt-5">
-          <label class="d-block m-0" style="font-size:13px;">パスワード</label>
+          <label>パスワード</label>
           <div class="border-bottom border-primary w-100">
             <input type="password" class="w-100 border-0" name="password">
           </div>
@@ -41,7 +42,8 @@
       {{ csrf_field() }}
     </div>
   </form>
-  </div>
+  <!-- </div> -->
+</div>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
   <script src="{{ asset('js/register.js') }}" rel="stylesheet"></script>
 </body>
